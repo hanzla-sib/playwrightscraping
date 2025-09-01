@@ -22,14 +22,6 @@ const crawler = new PlaywrightCrawler({
       console.log("title:", title);
       console.log("sku:", sku);
 
-      const priceElement = page
-        .locator("span.price")
-        .filter({ hasText: "$" })
-        .first();
-      const currentPrice = await priceElement.textContent();
-      const rawprice = currentPrice?.split("$")[1]?.trim();
-      const price = Number(rawprice?.replace(",", ""));
-      console.log("price:", price);
     } else if (request.label === "COLLECTION") {
       const productSelectors = ".product-item > a";
       const nextPageSelector = "a.pagination__next";
