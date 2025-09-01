@@ -1,4 +1,4 @@
-import { PlaywrightCrawler } from "crawlee";
+import { Dataset, PlaywrightCrawler } from "crawlee";
 
 // const crawler = new PlaywrightCrawler({
 //   requestHandler: async ({ page }) => {
@@ -22,6 +22,8 @@ const crawler = new PlaywrightCrawler({
       console.log("title:", title);
       console.log("sku:", sku);
 
+      await Dataset.pushData({ title, sku });
+      await Dataset.exportToJSON("saved-products.json");
     } else if (request.label === "COLLECTION") {
       const productSelectors = ".product-item > a";
       const nextPageSelector = "a.pagination__next";
